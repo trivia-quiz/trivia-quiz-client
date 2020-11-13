@@ -101,13 +101,13 @@
                       <div class=" col">
                           <!-- pertanyaan -->
                           <div class=" justify-content-center d-flex text-center">
-                              <div v-if="result === null" class=" m-5 text-light" style="font-family: 'VT323', monospace;">
+                              <div v-if="win === ''" class=" m-5 text-light" style="font-family: 'VT323', monospace;">
                                   <h1>Find the word who has similarity with these three words</h1>
                                   <h2>{{ questions.data.quizlist[0].quiz[0] }}</h2>
                                   <h2>{{ questions.data.quizlist[0].quiz[1] }}</h2>
                                   <h2>{{ questions.data.quizlist[0].quiz[2] }}</h2>
                               </div>
-                              <div v-if="result === 100" class=" m-5 text-light" style="font-family: 'VT323', monospace;">
+                              <div v-if="win === 'CONGRATS!'" class=" m-5 text-light" style="font-family: 'VT323', monospace;">
                                   <h1>{{ win }}</h1>
                               </div>
                           </div>

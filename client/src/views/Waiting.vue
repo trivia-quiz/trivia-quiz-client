@@ -2,15 +2,13 @@
   <div class=" container text-light text-center">
         <div class=" d-flex">
             <div class=" col bg-info">
-                <button class="btnStart btn btn-primary bg-transparent" style="width: 250px; height: 80px; margin-top: 30%; font-size: 40px; margin-bottom: 300px;">Get Start</button>
+                <button @click="startGame" class="btnStart btn btn-primary bg-transparent" style="width: 250px; height: 80px; margin-top: 30%; font-size: 40px; margin-bottom: 300px;">Get Start</button>
                 <div>
                     <div class=" overflow-auto" style="height: 25vh;">
                         <!-- table player -->
                         <table class=" table text-light" style="font-family: 'VT323', monospace; font-size: 35px; height: fit-content; border-left: 5px solid black;
                         border-radius: 25px;">
-                            <tr v-for="(username, i) in usernames"
-                                :key="i"
-                            >
+                            <tr>
                                 <td><img src="../assets/img/pl4.png" alt="player 1"></td>
                                 <td>{{ username }}</td>
                                 <td><img src="../assets/img/2ndW.png" alt=""></td>
@@ -64,6 +62,11 @@ export default {
   data () {
     return {
       username: localStorage.getItem('username')
+    }
+  },
+  methods: {
+    startGame () {
+      this.$router.push({ name: 'Home' })
     }
   }
 }
