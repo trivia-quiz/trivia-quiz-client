@@ -36,7 +36,7 @@ export default {
     join () {
       const user = this.user
       axios({
-        url: '/register',
+        url: 'http://localhost:3000/register',
         method: 'POST',
         data: user
       })
