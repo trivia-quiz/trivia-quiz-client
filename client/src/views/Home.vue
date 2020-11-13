@@ -30,59 +30,11 @@
                                           <th>score</th>
                                           <th>status</th>
                                       </tr> -->
-                                      <tr>
+                                      <tr v-for="(user, i) in onlineUsers" :key="i">
                                           <td><img src="../assets/img/pl4.png" alt="player 1"></td>
-                                          <td>{{ username }}</td>
-                                          <td>{{ score }}</td>
+                                          <td>{{user.username}}</td>
+                                          <td>{{user.score}}</td>
                                           <td><img src="../assets/img/2ndW.png" alt=""></td>
-                                      </tr>
-                                      <tr>
-                                          <td><img src="../assets/img/pl2.png" alt="player 2"></td>
-                                          <td>JONY</td>
-                                          <td>100</td>
-                                          <td><img src="../assets/img/1stW.png" alt=""></td>
-                                      </tr>
-                                      <tr>
-                                          <td><img src="../assets/img/pl3.png" alt="player 2"></td>
-                                          <td>ANTON</td>
-                                          <td>60</td>
-                                          <td><img src="../assets//img/notplay.png" alt=""></td>
-                                      </tr>
-                                      <tr>
-                                          <td><img src="../assets/img/pl4.png" alt="player 1"></td>
-                                          <td>BABANG</td>
-                                          <td>80</td>
-                                          <td><img src="../assets/img/2ndW.png" alt=""></td>
-                                      </tr>
-                                      <tr>
-                                          <td><img src="../assets/img/pl2.png" alt="player 2"></td>
-                                          <td>JONY</td>
-                                          <td>100</td>
-                                          <td><img src="../assets/img/1stW.png" alt=""></td>
-                                      </tr>
-                                      <tr>
-                                          <td><img src="../assets/img/pl3.png" alt="player 2"></td>
-                                          <td>ANTON</td>
-                                          <td>60</td>
-                                          <td><img src="../assets//img/notplay.png" alt=""></td>
-                                      </tr>
-                                      <tr>
-                                          <td><img src="../assets/img/pl4.png" alt="player 1"></td>
-                                          <td>BABANG</td>
-                                          <td>80</td>
-                                          <td><img src="../assets/img/2ndW.png" alt=""></td>
-                                      </tr>
-                                      <tr>
-                                          <td><img src="../assets/img/pl2.png" alt="player 2"></td>
-                                          <td>JONY</td>
-                                          <td>100</td>
-                                          <td><img src="../assets/img/1stW.png" alt=""></td>
-                                      </tr>
-                                      <tr>
-                                          <td><img src="../assets/img/pl3.png" alt="player 2"></td>
-                                          <td>ANTON</td>
-                                          <td>60</td>
-                                          <td><img src="../assets//img/notplay.png" alt=""></td>
                                       </tr>
                                   </table>
                               </div>
@@ -96,32 +48,32 @@
                   </div>
               </div>
               <!-- Quiz -->
-              <div class="rom2 col-9 d-flex flex-column">
+              <div v-if="questions.quizlist" class="rom2 col-9 d-flex flex-column">
                   <div class=" row justify-content-center flex-column">
                       <div class=" col">
                           <!-- pertanyaan -->
                           <div class=" justify-content-center d-flex text-center">
                               <div v-if="win === ''" class=" m-5 text-light" style="font-family: 'VT323', monospace;">
                                   <h1>Find the word who has similarity with these three words</h1>
-                                  <h2>{{ questions.data.quizlist[0].quiz[0] }}</h2>
-                                  <h2>{{ questions.data.quizlist[0].quiz[1] }}</h2>
-                                  <h2>{{ questions.data.quizlist[0].quiz[2] }}</h2>
+                                  <h2>{{ questions.quizlist[0].quiz[0] }}</h2>
+                                  <h2>{{ questions.quizlist[0].quiz[1] }}</h2>
+                                  <h2>{{ questions.quizlist[0].quiz[2] }}</h2>
                               </div>
-                              <div v-if="win === 'CONGRATS!'" class=" m-5 text-light" style="font-family: 'VT323', monospace;">
+                              <div v-if="win === 'Congratulation!!!!!'" class=" m-5 text-light" style="font-family: 'VT323', monospace;">
                                   <h1>{{ win }}</h1>
                               </div>
                           </div>
                       </div>
-                      <div v-if="result === null" class=" col">
+                      <div v-if="win === ''" class=" col">
                           <!-- pilihan jawaban -->
                           <div class=" justify-content-center d-flex text-center" style="margin-top: 35%; margin-bottom: 6%;">
                               <div class=" col">
                                   <!-- jawaban A -->
-                                  <button class="button" @click="check1(questions.data.quizlist[0].correct)">{{ questions.data.quizlist[0].option[0] }}</button>
+                                  <button class="button" @click="check1(questions.quizlist[0].correct)">{{ questions.quizlist[0].option[0] }}</button>
                               </div>
                               <div class=" col">
                                   <!-- jawaban B -->
-                                  <button class="button" @click="check2(questions.data.quizlist[0].correct)">{{ questions.data.quizlist[0].option[1] }}</button>
+                                  <button class="button" @click="check2(questions.quizlist[0].correct)">{{ questions.quizlist[0].option[1] }}</button>
                               </div>
                           </div>
                       </div>
@@ -142,7 +94,7 @@ export default {
       username: localStorage.getItem('username'),
       score: +localStorage.getItem('score'),
       win: '',
-      result: null
+      onlineUsers: []
     }
   },
   methods: {
@@ -159,23 +111,48 @@ export default {
       if (params === 1) {
         this.fetchQuestions()
         this.score += 20
-        if (this.score >= 100) {
-          this.win = 'CONGRATS!'
-          this.result = 100
-        }
+        this.$socket.emit('addScore', { username: this.username, score: this.score })
+        this.onlineUsers.forEach(element => {
+          if (element.score === 80) {
+            this.win = 'Congratulation!!!!!'
+            localStorage.clear()
+            this.onlineUsers = []
+          }
+        })
       } else {
         this.fetchQuestions()
         this.score -= 20
+        this.$socket.emit('addScore', { username: this.username, score: this.score })
       }
     },
     check2 (params) {
       if (params === 2) {
         this.fetchQuestions()
         this.score += 20
+        this.$socket.emit('addScore', { username: this.username, score: this.score })
+        this.onlineUsers.forEach(element => {
+          if (element.score === 80) {
+            this.win = 'Congratulation!!!!!'
+            localStorage.clear()
+            this.onlineUsers = []
+          }
+        })
       } else {
         this.fetchQuestions()
         this.score -= 20
+        this.$socket.emit('addScore', { username: this.username, score: this.score })
       }
+    }
+  },
+  sockets: {
+    userLogin (onlineUsers) {
+      this.onlineUsers = onlineUsers
+    },
+    getPlayers (onlineUsers) {
+      this.onlineUsers = onlineUsers
+    },
+    addScore (data) {
+      this.onlineUsers = data
     }
   },
   computed: {
@@ -184,6 +161,7 @@ export default {
     }
   },
   created () {
+    this.$socket.emit('getPlayers')
     this.fetchQuestions()
   }
 }

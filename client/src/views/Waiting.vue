@@ -8,45 +8,11 @@
                         <!-- table player -->
                         <table class=" table text-light" style="font-family: 'VT323', monospace; font-size: 35px; height: fit-content; border-left: 5px solid black;
                         border-radius: 25px;">
-                            <tr>
+                            <tr v-for="(user, i) in onlineUsers" :key="i">
                                 <td><img src="../assets/img/pl4.png" alt="player 1"></td>
-                                <td>{{ username }}</td>
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.score }}</td>
                                 <td><img src="../assets/img/2ndW.png" alt=""></td>
-                            </tr>
-                            <tr>
-                                <td><img src="../assets/img/pl2.png" alt="player 2"></td>
-                                <td>JONY</td>
-                                <td><img src="../assets/img/1stW.png" alt=""></td>
-                            </tr>
-                            <tr>
-                                <td><img src="../assets/img/pl3.png" alt="player 2"></td>
-                                <td>ANTON</td>
-                                <td><img src="../assets/img/notplay.png" alt=""></td>
-                            </tr>
-                            <tr>
-                                <td><img src="../assets/img/pl4.png" alt="player 1"></td>
-                                <td>BABANG</td>
-                                <td><img src="../assets/img/2ndW.png" alt=""></td>
-                            </tr>
-                            <tr>
-                                <td><img src="../assets/img/pl2.png" alt="player 2"></td>
-                                <td>JONY</td>
-                                <td><img src="../assets/img/1stW.png" alt=""></td>
-                            </tr>
-                            <tr>
-                                <td><img src="../assets/img/pl3.png" alt="player 2"></td>
-                                <td>ANTON</td>
-                                <td><img src="../assets/img/notplay.png" alt=""></td>
-                            </tr>
-                            <tr>
-                                <td><img src="../assets/img/pl4.png" alt="player 1"></td>
-                                <td>BABANG</td>
-                                <td><img src="../assets/img/2ndW.png" alt=""></td>
-                            </tr>
-                            <tr>
-                                <td><img src="../assets/img/pl2.png" alt="player 2"></td>
-                                <td>JONY</td>
-                                <td><img src="../assets/img/1stW.png" alt=""></td>
                             </tr>
                         </table>
                     </div>

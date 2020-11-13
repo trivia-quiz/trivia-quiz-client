@@ -24,8 +24,8 @@ export default new Vuex.Store({
           'x-rapidapi-host': 'twinword-word-association-quiz.p.rapidapi.com'
         }
       })
-        .then(result => {
-          context.commit('fetchQuestions', result)
+        .then(({ data }) => {
+          context.commit('fetchQuestions', data)
         })
         .catch(err => {
           console.log(err)
