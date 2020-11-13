@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-image: url('https://i.imgur.com/87Ie2nd.gif');
+    background-position-x: center;
+    font-family: 'VT323', monospace;
+}
+
+.btnStart:hover{
+    background-color: #EFA809;
+}
+
+.button:hover {background-color: #A3A5A2; color: black;}
+
+/* jepling */
+/* body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  } */
