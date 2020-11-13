@@ -1,36 +1,19 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from '../axios/axiosInstance'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    players: [],
     questions: []
   },
   mutations: {
-    fetchPlayers (state, result) {
-      state.players = result
-    },
     fetchQuestions (state, result) {
       state.questions = result
     }
   },
   actions: {
-    fetchPlayers (context) {
-      axios({
-        method: 'GET',
-        url: 'http://localhost:3000/users'
-      })
-        .then(result => {
-          context.commit('fetchPlayers', result)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    },
-
     fetchQuestions (context) {
       axios({
         method: 'GET',
@@ -42,7 +25,7 @@ export default new Vuex.Store({
         }
       })
         .then(result => {
-          context.commit('fetchQuestion', result.quizlist)
+          context.commit('fetchQuestions', result)
         })
         .catch(err => {
           console.log(err)
