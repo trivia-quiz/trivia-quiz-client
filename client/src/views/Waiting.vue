@@ -10,7 +10,6 @@
                         <div class=" text-center mt-3">
                             <!-- judul -->
                             <h1 style="font-family: 'Bungee Shade', cursive;">Score</h1>
-                            {{ username }}
                             <div class=" overflow-auto" style="height: 40vh;">
                                 <!-- table player -->
                                 <table class=" table text-light" style="font-family: 'VT323', monospace; font-size: 55px; height: fit-content; border-left: 5px solid black;
@@ -21,60 +20,9 @@
                                         <th>score</th>
                                         <th>status</th>
                                     </tr> -->
-                                    <tr>
-                                        <td><img src="../assets/img/pl4.png" alt="player 1"></td>
-                                        <td>BABANG</td>
-                                        <td>80</td>
-                                        <td><img src="../assets/img/2ndW.png" alt=""></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="../assets/img/pl2.png" alt="player 2"></td>
-                                        <td>JONY</td>
-                                        <td>100</td>
-                                        <td><img src="../assets/img/1stW.png" alt=""></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="../assets/img/pl3.png" alt="player 2"></td>
-                                        <td>ANTON</td>
-                                        <td>60</td>
-                                        <td><img src="../assets//img/notplay.png" alt=""></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="../assets/img/pl4.png" alt="player 1"></td>
-                                        <td>BABANG</td>
-                                        <td>80</td>
-                                        <td><img src="../assets/img/2ndW.png" alt=""></td>
-                                    </tr>s
-                                    <tr>
-                                        <td><img src="../assets/img/pl2.png" alt="player 2"></td>
-                                        <td>JONY</td>
-                                        <td>100</td>
-                                        <td><img src="../assets/img/1stW.png" alt=""></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="../assets/img/pl3.png" alt="player 2"></td>
-                                        <td>ANTON</td>
-                                        <td>60</td>
-                                        <td><img src="../assets//img/notplay.png" alt=""></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="../assets/img/pl4.png" alt="player 1"></td>
-                                        <td>BABANG</td>
-                                        <td>80</td>
-                                        <td><img src="../assets/img/2ndW.png" alt=""></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="../assets/img/pl2.png" alt="player 2"></td>
-                                        <td>JONY</td>
-                                        <td>100</td>
-                                        <td><img src="../assets/img/1stW.png" alt=""></td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="../assets/img/pl3.png" alt="player 2"></td>
-                                        <td>ANTON</td>
-                                        <td>60</td>
-                                        <td><img src="../assets//img/notplay.png" alt=""></td>
-                                    </tr>
+                                    <div v-for="(user, i) in onlineUsers" :key="i">
+                                        <h2>{{user.username}}</h2>
+                                    </div>
                                 </table>
                             </div>
                         </div>
@@ -95,7 +43,14 @@ export default {
   name: 'Waiting',
   data () {
     return {
-      username: localStorage.getItem('username')
+      username: localStorage.getItem('username'),
+      onlineUsers: []
+    }
+  },
+  sockets: {
+    userLogin (onlineUsers) {
+      console.log(onlineUsers)
+      this.onlineUsers = onlineUsers
     }
   }
 }
