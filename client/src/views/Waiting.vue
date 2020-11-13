@@ -61,7 +61,14 @@ export default {
   name: 'Waiting',
   data () {
     return {
-      username: localStorage.getItem('username')
+      username: localStorage.getItem('username'),
+      onlineUsers: []
+    }
+  },
+  sockets: {
+    userLogin (onlineUsers) {
+      console.log(onlineUsers)
+      this.onlineUsers = onlineUsers
     }
   },
   methods: {

@@ -43,6 +43,7 @@ export default {
         .then(({ data }) => {
           localStorage.setItem('username', data.username)
           localStorage.setItem('score', data.score)
+          this.$socket.emit('userLogin', { username: data.username })
           this.$router.push('/waiting')
         })
         .catch(err => {
