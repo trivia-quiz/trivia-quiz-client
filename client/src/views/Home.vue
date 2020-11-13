@@ -2,11 +2,9 @@
     <div style="background-color: black;">
       <div id="mySidenav" class="sidenav">
           <a href="javascript:void(0)" class="closebtn" @click="closeNav">&times;</a>
-          <a href="#"><i class="fa fa-fw fa-home"></i> Home</a>
-          <a href="#"><i class="fa fa-fw fa-wrench"></i> Services</a>
-          <a href="#"><i class="fa fa-fw fa-user"></i> Clients</a>
+          <a href="#" class="fa fa-fw fa-home" @click="goTowaitingRoom">Waiting Room</a>
           <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>
-          <a href="#">Log Out</a>
+          <a href="#" @click="goToLogin">Log Out</a>
       </div>
 
       <div id="Quiz-page">
@@ -42,7 +40,8 @@
                           <hr class=" my-3">
                           <div class="text-center">
                               <!-- blm di isi -->
-                              <span style="font-family: 'Bungee Shade', cursive;" @click="openNav"><h1>open</h1></span>
+                              <span style="font-family: 'Bungee Shade', cursive;" @click="openNav"><h1>NEXT</h1></span>
+                              <img src="https://media.giphy.com/media/RMehuml4zxxk0A6Tma/giphy.gif" alt="">
                           </div>
                       </div>
                   </div>
@@ -77,6 +76,15 @@
                               </div>
                           </div>
                       </div>
+                      <div v-if="win === 'Congratulation!!!!!'" class=" col">
+                          <!-- END game -->
+                          <div class=" justify-content-center d-flex text-center" style="margin-top: 35%; margin-bottom: 6%;">
+                              <div class=" col">
+                                  <!-- Back to waiting room -->
+                                  <button class="button" @click="openNav">GAME OVER</button>
+                              </div>
+                          </div>
+                      </div>
                   </div>
               </div>
           </div>
@@ -106,6 +114,12 @@ export default {
     },
     fetchQuestions () {
       this.$store.dispatch('fetchQuestions')
+    },
+    goToLogin () {
+      this.$router.push({ name: 'Login' })
+    },
+    goTowaitingRoom () {
+      this.$router.push({ name: 'Waiting' })
     },
     check1 (params) {
       if (params === 1) {

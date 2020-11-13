@@ -1,16 +1,16 @@
 <template>
   <section class="login">
-    <div class="container bg-danger">
+    <div class="container">
         <div class="mama row d-flex justify-content-center">
             <div id="login" class="col-3 border rounded shadow text-center text-white">
-                <h2 class=" mt-5">Enter The Game</h2>
+                <h1 class=" mt-5">Enter The Game</h1>
                 <form @submit.prevent="join" class=" p-3">
                     <div class="form-group">
-                        <label class="mt-5 mb-4" for="username"><h5>Username</h5></label>
-                        <input v-model="user.username" placeholder="User Name" type="text" class="form-control text-center mb-5">
+                        <label class="mt-5 mb-4" for="username"><h2>Username</h2></label>
+                        <input v-model="user.username" placeholder="User Name" type="text" class="papa form-control text-center mb-5">
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success btn-md">Join the game</button>
+                        <button type="submit" class="papabaru btn btn-success btn-md">Join the game</button>
                     </div>
                 </form>
             </div>
@@ -57,6 +57,12 @@ export default {
 #login{
   top: 20vh;
 }
+.papa{
+  font-size: 30px;
+}
+.papabaru{
+  font-size: 20px;
+}
 *{
   margin: 0;
   padding: 0;
@@ -66,7 +72,7 @@ export default {
   font-family: 'VT323', monospace;
 }
 .mama{
-  margin-bottom: 70vh;
+  margin-bottom: 74vh;
 }
 
 </style>
