@@ -1,5 +1,6 @@
 <template>
-  <div class=" container text-light text-center">
+<div class="">
+  <div class="mama container text-light text-center">
         <div class=" d-flex">
             <div class=" col bg-info">
                 <button @click="startGame" class="btnStart btn btn-primary bg-transparent" style="width: 250px; height: 80px; margin-top: 30%; font-size: 40px; margin-bottom: 300px;">Get Start</button>
@@ -19,7 +20,8 @@
                 </div>
             </div>
         </div>
-    </div>
+  </div>
+</div>
 </template>
 
 <script>
@@ -45,14 +47,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-image: url('https://i.imgur.com/87Ie2nd.gif');
-    background-position-x: center;
-    font-family: 'VT323', monospace;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-image: url('https://i.imgur.com/87Ie2nd.gif');
+  background-position-x: center;
+  font-family: 'VT323', monospace;
 }
 .btnStart:hover{
     background-color: #EFA809;
