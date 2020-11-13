@@ -10,6 +10,7 @@
                         <div class=" text-center mt-3">
                             <!-- judul -->
                             <h1 style="font-family: 'Bungee Shade', cursive;">Score</h1>
+                            {{ username }}
                             <div class=" overflow-auto" style="height: 40vh;">
                                 <!-- table player -->
                                 <table class=" table text-light" style="font-family: 'VT323', monospace; font-size: 55px; height: fit-content; border-left: 5px solid black;
@@ -91,7 +92,12 @@
 
 <script>
 export default {
-  name: 'Waiting'
+  name: 'Waiting',
+  data () {
+    return {
+      username: localStorage.getItem('username')
+    }
+  }
 }
 </script>
 

@@ -1,21 +1,19 @@
 <template>
   <section class="login">
-    <div class="container">
-        <div class="row">
-            <div class="col-3"></div>
+    <div class="container bg-danger">
+        <div class="mama row d-flex justify-content-center">
             <div id="login" class="col-3 border rounded shadow text-center text-white">
-                <h2>Enter The Game</h2>
-                <form @submit.prevent="join">
+                <h2 class=" mt-5">Enter The Game</h2>
+                <form @submit.prevent="join" class=" p-3">
                     <div class="form-group">
-                        <label class="mt-2" for="username"><h5>Username</h5></label>
-                        <input v-model="user.username" placeholder="darklord" type="text" class="form-control">
+                        <label class="mt-5 mb-4" for="username"><h5>Username</h5></label>
+                        <input v-model="user.username" placeholder="User Name" type="text" class="form-control text-center mb-5">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success btn-md">Join the game</button>
                     </div>
                 </form>
             </div>
-            <div class="col-3"></div>
         </div>
     </div>
   </section>
@@ -56,15 +54,19 @@ export default {
 </script>
 
 <style scoped>
-body{
+#login{
+  top: 20vh;
+}
+*{
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  box-sizing: border-box;
+  background-image: url('https://i.imgur.com/87Ie2nd.gif');
+  background-position-x: center;
+  font-family: 'VT323', monospace;
 }
-#login{
-  background-color: black;
-  top: 70px;
-  left:12%;
+.mama{
+  margin-bottom: 70vh;
 }
 
 </style>
